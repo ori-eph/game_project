@@ -7,8 +7,6 @@ let button = document.getElementById("submit")
 button.addEventListener("click", function (event) {
     event.preventDefault();
 
-    event.preventDefault();
-
     let username = document.getElementById("username").value
     let password = document.getElementById("password").value
     let phoneNumber = document.getElementById("number").value
@@ -19,16 +17,13 @@ button.addEventListener("click", function (event) {
 
     } else {
         document.getElementById("invalid").innerHTML = ""
-        let existingUsers = JSON.parse(localStorage.getItem("users")) || []
-
        
         const newUser = {
             username: username,
             phoneNumber: phoneNumber,
             password: password
         }
-        existingUsers.push(newUser)
-        localStorage.setItem('users', JSON.stringify(existingUsers))
+        localStorage.setItem(username, JSON.stringify(newUser))
 
     }
 })
