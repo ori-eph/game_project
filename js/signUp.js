@@ -4,7 +4,9 @@ let phoneNumber = document.getElementById("number").value
 let button = document.getElementById("submit")
 
 
-button.addEventListener("click", function (event) {
+button.addEventListener("click", function (eventevent) {
+    event.preventDefault();
+
     event.preventDefault();
 
     let username = document.getElementById("username").value
@@ -19,6 +21,7 @@ button.addEventListener("click", function (event) {
         document.getElementById("invalid").innerHTML = ""
         let existingUsers = JSON.parse(localStorage.getItem("users")) || []
 
+       
         const newUser = {
             username: username,
             phoneNumber: phoneNumber,
