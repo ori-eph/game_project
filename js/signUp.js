@@ -4,7 +4,9 @@ let phoneNumber = document.getElementById("number").value
 let button = document.getElementById("submit")
 
 
-button.addEventListener("click", function () {
+button.addEventListener("click", function (event) {
+    event.preventDefault();
+
     let username = document.getElementById("username").value
     let password = document.getElementById("password").value
     let phoneNumber = document.getElementById("number").value
@@ -12,19 +14,21 @@ button.addEventListener("click", function () {
     let test = regex.test(phoneNumber)
     if (test === false) {
         document.getElementById("invalid").innerHTML = "invalid number"
+
     } else {
         document.getElementById("invalid").innerHTML = ""
+        let existingUsers = JSON.parse(localStorage.getItem("users")) || []
+
         const newUser = {
             username: username,
             phoneNumber: phoneNumber,
             password: password
         }
-        localStorage.setItem("newUser", JSON.stringify(newUser))
+        existingUsers.push(newUser)
+        localStorage.setItem('users', JSON.stringify(existingUsers))
 
     }
 })
-console.log("Stored User: ", localStorage.getItem("newUser"));
-console.log("New User Object: ", newUser);
 
 
 
