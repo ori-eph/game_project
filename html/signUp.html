@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/style.css" rel="stylesheet">
-        <link href="./media/img/circle_logo.png" rel="icon" type="image/x-icon">
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/login_signup.css" rel="stylesheet">
+        <link href="../media/img/circle_logo.png" rel="icon" type="image/x-icon">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
             href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800&family=Merriweather:ital@1&family=Pacifico&family=Rubik+Iso&family=Rubik:wght@300&display=swap"
             rel="stylesheet">
-        <title>project name</title>
+        <title>Shore games | sign up</title>
     </head>
+</head>
+
 <body>
-   
-    <form class="login" id="login-container"> 
-        <h2>sign up</h2>
-     <label for="username">username</label>   
-     <input required id="username"><br>  
-     <label for="password">password</label>   
-     <input required id="password" type="password"> <br>
-     <label for="number">phone number</label>   
-     <input required id="number"> <br>
-     <p id="invalid"></p> <br>
-     <button id="submit">sign up</button>
-    
-
-
-
-    </form>
-    <script src="/js/signUp.js"></script> 
+    <div class="login">
+        <h1>sign up</h1>
+        <hr>
+        <form>
+            <label for="username">username</label>
+            <input required id="username">
+            <label for="password">password</label>
+            <input required id="password" type="password">
+            <label for="number">phone number</label>
+            <input required id="number">
+            <p id="invalid"></p>
+            <button id="submit" type="submit">sign up</button>
+        </form>
+        <br>
+        <img id="logo-login" src="../media/img/circle_logo.png" alt="logo">
+    </div>
+    <script src="/js/signUp.js"></script>
 </body>
 
 </html>
