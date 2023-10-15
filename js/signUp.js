@@ -4,7 +4,7 @@ let phoneNumber = document.getElementById("number").value
 let button = document.getElementById("submit")
 
 
-button.addEventListener("click", function (eventevent) {
+button.addEventListener("click", function (event) {
     event.preventDefault();
 
     event.preventDefault();
