@@ -1,0 +1,45 @@
+/* colors: 
+1) #F3f0CA
+2) #E1AA74
+3) #3876BF
+4) #192655
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rubik";
+}
+
+html {
+    width: 100%;
+    height: 100vh;
+    /* background: linear-gradient(to bottom, #F3f0CA 0%, #F3f0CA 30%, #E1AA74 30%, #E1AA74 55%, #3876BF 55%, #3876BF 85%, #192655 85%, #192655 100%);
+    background-size: cover;
+    background-repeat: no-repeat; */
+    background-color: #192655;
+}
+
+.login {
+    padding: 2%;
+    width: 30%;
+    min-width: fit-content;
+    margin: 5% auto;
+    background-color: #ffffff;
+    min-height: 65vh;
+    border: 2px solid #192655;
+    box-shadow: #192655;
+    border-radius: 5%;
+
+}
+
+.login * {
+    display: block;
+    margin: 3% auto;
+    text-align: center;
+}
+
+#logo-login {
+    max-width: 30%;
+
+}
