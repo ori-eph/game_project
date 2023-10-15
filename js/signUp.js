@@ -25,7 +25,7 @@ button.addEventListener("click", function (event) {
             password: password
         }
         localStorage.setItem(username, JSON.stringify(newUser))
-
+        window.location.href = "/html/home.html";
     }
 })
 
