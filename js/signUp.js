@@ -12,6 +12,7 @@ button.addEventListener("click", function (event) {
     let phoneNumber = document.getElementById("number").value
     let regex = /^\d{10}$|^\d{3}-\d{3}-\d{4}$|^\(\d{3}\)\d{3}-\d{4}$/
     let test = regex.test(phoneNumber)
+    if(username===""||password===""){document.getElementById("invalid").innerHTML = "please fill out required fields"}else
     if (test === false) {
         document.getElementById("invalid").innerHTML = "invalid number"
 
@@ -24,7 +25,7 @@ button.addEventListener("click", function (event) {
             password: password
         }
         localStorage.setItem(username, JSON.stringify(newUser))
-
+        window.location.href = "/html/home.html";
     }
 })
 
