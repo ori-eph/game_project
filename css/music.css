@@ -33,7 +33,9 @@ body {
 #keys > * {
     height: 100%;
     /* background-color: white; */
-    border-right: 1px solid black;
+    border-right: 2px ridge black;
+    border-bottom: 5px black ridge;
+   background-image: linear-gradient();
 }
 
 .cover {
@@ -47,3 +49,12 @@ body {
 #keys div:hover {
     background-color: lightgray;
 }
+#keys.playing{
+    background-color: lightgray;
+}
+.recIcon{
+    width:40px ;
+    border-radius: 100%;
+    margin-top: 10px;
+}
+.recIcon.pressed{display: none;}

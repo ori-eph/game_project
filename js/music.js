@@ -18,7 +18,7 @@ function createPiano(numKeys) {
         else {
             sourceFile += i + ".mp3";
         }
-        source.src=sourceFile;
+        source.src = sourceFile;
         audio.appendChild(source);
         audio.playbackRate = 5;
         audio.volume = 1.0;
@@ -38,21 +38,63 @@ function playKey() {
     audio.play();
 }
 
+let recording=[]
+let isOn = false
+
+let recordBtn = document.getElementById("record-button")
+let stopBtn = document.getElementById("stop-record")
+
+
+
+recordBtn.addEventListener("click", function () {
+    isOn = true
+    recordBtn.classList.add("pressed")
+    stopBtn.classList.remove("pressed")
+  
+})
 
 
 let pianoNotes = document.getElementById("piano-notes");
 pianoNotes.addEventListener("keypress", playKeyKeyboard)
 
 function playKeyKeyboard(event) {
-    let keysString ="wertyuioasdfghjklzxcvbnm";
+   
+    let keysString = "wertyuioasdfghjklzxcvbnm";
     let keys = keysString.split("");
     let capsKeys = keys.map(key => key.toUpperCase());
     for (let i = 0; i < keys.length; i++) {
         if (event.key === keys[i] || event.key === capsKeys[i]) {
             let audio = document.getElementsByTagName("audio");
             audio[i].play();
+            if(isOn){
+                recording.push(audio[i])
+             }
             pianoNotes.value = "";
+           
+            let key = document.getElementById("key" + i); 
+    key.classList.add("playing");
+}
         }
     }
+   
+stopBtn.addEventListener("click", function () {
+    isOn = false
+    stopBtn.classList.add("pressed")
+    recordBtn.classList.remove("pressed")
+    for (let i = 0; i < recording.length; i++) {
+        recording[i].play();
+       
+    }
+})
 
-}
+// function record() {
+//    if(isOn){
+//     let audio = document.getElementsByTagName("audio");
+//     for (let i = 0; i < audio.length; i++) {
+//         recording.push(audio[i]);
+//     }
+//    }
+   
+//     }
+    
+
