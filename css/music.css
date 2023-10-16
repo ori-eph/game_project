@@ -32,14 +32,9 @@ body {
 
 #keys > * {
     height: 100%;
-    /* background-color: white; */
+    background-color: white;
     border-right: 2px ridge black;
     border-bottom: 5px black ridge;
-   background-image: linear-gradient();
-}
-
-.cover {
-    background-color: white;
 }
 
 #keys div:last-child {
