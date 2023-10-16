@@ -1,0 +1,86 @@
+/* colors: 
+1) #F3f0CA
+2) #E1AA74
+3) #3876BF
+4) #192655
+*/
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("https://i.pinimg.com/736x/e8/b2/7a/e8b27aba9af1540dff13cbd8177d68fc.jpg");
+    /* background-color: #f3f0ca; */
+    text-align: center;
+}
+
+header {
+    background-color: #192655;
+    color: white;
+    position: fixed;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 15vh;
+    column-gap: 1%;
+    padding: 1%;
+    text-align: center;
+    align-items: center;
+}
+
+header>img {
+    width: 5%;
+}
+
+nav {
+    position: fixed;
+    top: 15vh;
+    width: 100%;
+    height: 5vh;
+    background-color: #3876bf;
+    display: flex;
+}
+
+#opening {
+    margin: 1% auto 0 auto;
+    text-align: center;
+    padding: 3%;
+}
+
+#opening > p{
+    margin: 1% 0 2% 0;
+    font-weight: bolder;
+    line-height: 120%;
+}
+
+#games {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8%;
+    width: 60%;
+    margin: auto;
+}
+
+#games > div {
+    background-color: #E1AA74;
+    width: 100%;
+    border-radius: 5%;
+    padding: 10%;
+}
+
+#games > div:hover {
+    cursor: pointer;
+}
+
+#games > div > img {
+    width: 100%;
+}
+
+#content {
+    width: 70%;
+    height: fit-content;
+    background-color: #ffffffd6;
+    padding: 1% 1% 15vh 1%;
+    border-radius: 5%;
+    margin: 25vh auto 10% auto;
+}

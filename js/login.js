@@ -11,6 +11,7 @@ function checkUser() {
             if (key === username) {
                 let user = JSON.parse(localStorage.getItem(key));
                 if (user["password"] === password) {
+                    localStorage.setItem("username", username);
                     window.location.href = "./html/home.html";
                     return;
                 }

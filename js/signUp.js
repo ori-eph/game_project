@@ -16,7 +16,11 @@ button.addEventListener("click", function (event) {
     if (test === false) {
         document.getElementById("invalid").innerText = "invalid number"
 
-    } else {
+    }
+    else if (localStorage.getItem(username)) {
+        document.getElementById("invalid").innerText = "username taken. try another one"
+    }
+    else {
         document.getElementById("invalid").innerText = ""
        
         const newUser = {
@@ -25,6 +29,7 @@ button.addEventListener("click", function (event) {
             password: password
         }
         localStorage.setItem(username, JSON.stringify(newUser))
+        localStorage.setItem("username", username);
         window.location.href = "../html/home.html";
     }
 })
