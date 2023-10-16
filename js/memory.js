@@ -71,12 +71,11 @@ function playerTurn() {
                                 firstCard = null;
                             };
                         }(firstCard, secondCard), 1000);
+                    }
                 }
             }
-
-        })
-    }
-}
+        });
+    }}
 
 playerTurn()
 
