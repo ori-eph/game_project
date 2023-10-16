@@ -36,6 +36,9 @@ for (let i = 0; i < keys.length; i++) {
 function playKey() {
     let audio = this.children[0];
     audio.play();
+    if(isOn){
+        recording.push(audio);
+     }
 }
 
 let recording=[]
@@ -67,13 +70,13 @@ function playKeyKeyboard(event) {
             let audio = document.getElementsByTagName("audio");
             audio[i].play();
             if(isOn){
-                recording.push(audio[i])
+                recording.push(audio[i]);
              }
             pianoNotes.value = "";
            
             let key = document.getElementById("key" + i); 
-    key.classList.add("playing");
-}
+            key.classList.add("playing");
+            }          
         }
     }
    
@@ -81,11 +84,20 @@ stopBtn.addEventListener("click", function () {
     isOn = false
     stopBtn.classList.add("pressed")
     recordBtn.classList.remove("pressed")
-    for (let i = 0; i < recording.length; i++) {
-        recording[i].play();
-       
-    }
+    playAudioTags(recording);
 })
+
+function playAudioTags(thisRecording) {
+    let i = 0;
+    const playNext = () => {
+      if (i < thisRecording.length) {
+        thisRecording[i].play();
+        i++;
+        setTimeout(playNext, 400);
+      }
+    };
+    playNext();
+  }
 
 // function record() {
 //    if(isOn){
