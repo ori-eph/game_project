@@ -69,14 +69,15 @@ function playKeyKeyboard(event) {
         if (event.key === keys[i] || event.key === capsKeys[i]) {
             let audio = document.getElementsByTagName("audio");
             audio[i].play();
+        
             if(isOn){
                 recording.push(audio[i]);
              }
             pianoNotes.value = "";
            
             let key = document.getElementById("key" + i); 
-            key.classList.add("playing");
-            }          
+    key.classList.add("playing");
+} 
         }
     }
    
