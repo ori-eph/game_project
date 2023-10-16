@@ -1,0 +1,49 @@
+audio {
+    display: none;
+}
+
+body {
+    width: 80%;
+    height: 80vh;
+    margin: auto;
+    background-color: lightblue;
+}
+
+#piano {
+    width: 100%;
+    min-width: 400px;
+    height: 40vh;
+    background-color: black;
+    margin: 0 auto;
+    border: 1px solid gray;
+    position: relative;
+}
+
+#keys {
+    width: 84%;
+    height: 25vh;
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    align-items: center;
+}
+
+#keys > * {
+    height: 100%;
+    /* background-color: white; */
+    border-right: 1px solid black;
+}
+
+.cover {
+    background-color: white;
+}
+
+#keys div:last-child {
+    border-right: none;
+}
+
+#keys div:hover {
+    background-color: lightgray;
+}
