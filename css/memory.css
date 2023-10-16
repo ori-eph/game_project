@@ -1,0 +1,18 @@
+body{
+    background-color: lightblue;
+    width: 50%;
+    margin: auto;
+    /* height: 98vh; */
+}
+#grid-container {
+    /* background-color: lightcoral; */
+    display: grid;
+    width: 100%;
+    /* height: fit-content; */
+    grid-gap: 2%;
+}
+
+img {
+    border: 0.5em solid white;
+    border-radius: 5%;
+}
