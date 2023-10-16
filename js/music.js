@@ -51,6 +51,7 @@ let stopBtn = document.getElementById("stop-record")
 
 recordBtn.addEventListener("click", function () {
     isOn = true
+    recording=[]
     recordBtn.classList.add("pressed")
     stopBtn.classList.remove("pressed")
   
