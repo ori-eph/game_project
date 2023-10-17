@@ -133,6 +133,7 @@ function stopRecording() {
     let num = Number.parseInt(localStorage.getItem("recordingsNum")) + 1;
     localStorage.setItem("recording" + num, JSON.stringify(recording));
     localStorage.setItem("recordingsNum", num);
+    refreshList();
 }
 
 /* a play recording function that takes an array of numbers and plays the audio files that 
@@ -200,8 +201,6 @@ function onOffPiano() {
 
 
 // ------------ list maker:
-
-stopBtn.addEventListener("click", refreshList);
 
 function refreshList() {
     let list = document.getElementById("items-list");
