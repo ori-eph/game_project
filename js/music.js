@@ -1,4 +1,4 @@
-// global variables: {
+//variables: {
 
 /* html collections that hold the keys and their audio files, 
 recording settings helpers - a recording holder and on and off button and recordings num */
@@ -16,6 +16,10 @@ let stopBtn = document.getElementById("stop-record")
 //
 const pianoNotes = document.getElementById("piano-notes");
 const volume = document.getElementById("volume");
+
+//on and off btn:
+let powerBtn = document.getElementById("on-btn");
+
 // }
 
 // -----------------------------------------
@@ -163,10 +167,7 @@ function changeVolume() {
     }
 }
 
-//on and off btn:
-let powerBtn = document.getElementById("on-btn");
 powerBtn.addEventListener("click", onOffPiano);
-
 /* the function removes all the event listener if the button turns green (is turned on) 
 and does the opposite for the red */
 function onOffPiano() {
@@ -180,6 +181,9 @@ function onOffPiano() {
         pianoNotes.removeEventListener("keypress", playKeyKeyboard);
         stopBtn.removeEventListener("click", stopRecording);
         pianoNotes.disabled = "true";
+        if (isOn) {
+            stopRecording();
+        }
     }
     else {
         powerBtn.classList.remove("red");
