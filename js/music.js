@@ -213,6 +213,7 @@ function onOffPiano() {
 function refreshList() {
     const list = document.getElementById("items-list");
     const userRecordings = JSON.parse(localStorage.getItem(userRecKey));
+    let count
     list.innerHTML = "";
     for (let key in localStorage) {
         for (let i = 0; i < userRecordings.length; i++) {
