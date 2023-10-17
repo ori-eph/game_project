@@ -50,15 +50,28 @@ function shuffleArray(array) {
     return copy;
 }
 
-let winner = document.getElementById("won")
 
 let open = 0
 let points = 0
+let winner = document.getElementById("won")
+let replay=document.getElementById("replay")
+replay.addEventListener("click",function(){
+    points=0
+    document.getElementById("points").innerHTML = points
+    open=0
+    removeBoard()
+    createBoard(12)
+    playerTurn()
+   
+})
+
 let firstCardIndex = null
 let secondCardIndex = null
-
+ const cardElements = document.getElementsByTagName("img");
 function playerTurn() {
-    const cardElements = document.getElementsByTagName("img");
+   
+   replay.style.display="none"
+   winner.innerHTML=""
     for (let i = 0; i < cardElements.length; i++) {
         cardElements[i].addEventListener("click", function () {
             if (open < 2) {
@@ -72,28 +85,36 @@ function playerTurn() {
                     secondCardIndex = i;
 
                     if (cards[secondCardIndex].cardNum === cards[firstCardIndex].cardNum) {
-                        points++
+                        points++;
                         document.getElementById("points").innerHTML = points;
                         open = 0
                         firstCardIndex = null
                         secondCardIndex = null
                         if (points === 6) {
                             winner.innerHTML = "YOU'VE WON!"
+                            replay.style.display="inline"
                         }
                     } else {
-                        setTimeout(function () {
-                            cardElements[firstCardIndex].src = "../media/img/logo1.jpeg";
-                            cardElements[secondCardIndex].src = "../media/img/logo1.jpeg";
-                            open = 0;
-                            firstCardIndex = null
-                            secondCardIndex = null
-                        }, 1000);
+                        setTimeout(flipBack, 1000);
                     }
                 }
             }
         });
     }
 }
+playerTurn();
 
-playerTurn()
+function flipBack() {
+    cardElements[firstCardIndex].src = "../media/img/logo1.jpeg";
+    cardElements[secondCardIndex].src = "../media/img/logo1.jpeg";
+    open = 0;
+    firstCardIndex = null
+    secondCardIndex = null
+}
 
+function removeBoard(){
+    const gridContainer = document.getElementById("grid-container");
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+}
