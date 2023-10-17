@@ -32,6 +32,6 @@ p{margin-top: 10px;
     font-weight: bold;
     margin:20px ;
 }
-button{padding: 5px;
+#replay, #next-level {padding: 5px;
 font-size: 2rem;
 display:none ;}
