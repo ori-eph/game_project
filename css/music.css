@@ -30,7 +30,7 @@ body {
     align-items: center;
 }
 
-#keys > * {
+#keys>* {
     height: 100%;
     background-color: white;
     border-right: 2px ridge black;
@@ -42,14 +42,24 @@ body {
 }
 
 #keys div:hover {
+    
+    /* turns the keys gray when mouse is on them, important since style gets overwritten by 
+    the style of the keys when they are called by the keyboard
+     (they turn orange in the "playkeykeyboard" function) */
+
+    background-color: lightgray !important;
+}
+
+#keys.playing {
     background-color: lightgray;
 }
-#keys.playing{
-    background-color: lightgray;
-}
-.recIcon{
-    width:40px ;
+
+.recIcon {
+    width: 40px;
     border-radius: 100%;
     margin-top: 10px;
 }
-.recIcon.pressed{display: none;}
+
+.recIcon.pressed {
+    display: none;
+}

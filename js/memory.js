@@ -14,6 +14,7 @@ function createBoard(numCards) {
     cardsNumbersSecondHalf = cardsNumbersHalf;
     cardsNumbers = cardsNumbersHalf.concat(cardsNumbersSecondHalf);
     cardsNumbers = shuffleArray(cardsNumbers);
+    console.log(cardsNumbers);
 
     let grid = document.getElementById("grid-container");
     grid.style.gridTemplateColumns = "repeat(" + numCards / (numCards / 4) + ", 1fr)";
