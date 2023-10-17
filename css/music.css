@@ -9,6 +9,30 @@ body {
     background-color: lightblue;
 }
 
+.recIcon {
+    width: 40px;
+    border-radius: 100%;
+    margin-top: 10px;
+}
+
+.recIcon.pressed {
+    display: none;
+}
+
+.red {
+    background-color: #ff4949;
+    
+}
+
+.green {
+    background-color: #37ff00;
+}
+
+#on-btn {
+    width: 5%;
+    border-radius: 50%;
+}
+
 #piano {
     width: 100%;
     min-width: 400px;
@@ -52,14 +76,4 @@ body {
 
 #keys.playing {
     background-color: lightgray;
-}
-
-.recIcon {
-    width: 40px;
-    border-radius: 100%;
-    margin-top: 10px;
-}
-
-.recIcon.pressed {
-    display: none;
 }

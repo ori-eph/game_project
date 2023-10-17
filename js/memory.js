@@ -27,9 +27,11 @@ function createBoard(numCards) {
         cardImg.style.objectFit = "cover";
 
         cardImg.src = "../media/img/logo1.jpeg";
-        cards.push({ num: (i + 1), 
+        cards.push({
+            num: (i + 1),
             cardImg: "../media/img/cards/" + cardsNumbers[i] + ".jpeg",
-          cardNum: cardsNumbers[i] })
+            cardNum: cardsNumbers[i]
+        })
         grid.appendChild(cardImg);
     }
 }
@@ -48,44 +50,44 @@ function shuffleArray(array) {
     return copy;
 }
 
-let winner=document.getElementById("won")
+let winner = document.getElementById("won")
 
 let open = 0
-let points =0
+let points = 0
 let firstCardIndex = null
-let secondCardIndex=null
+let secondCardIndex = null
+
 function playerTurn() {
     const cardElements = document.getElementsByTagName("img");
     for (let i = 0; i < cardElements.length; i++) {
         cardElements[i].addEventListener("click", function () {
-            if(open < 2 ) {
+            if (open < 2) {
                 cardElements[i].src = cards[i].cardImg;
                 open++;
-     
+
                 if (open === 1) {
-                    firstCardIndex =i
-   
+                    firstCardIndex = i;
+
                 } else if (open === 2) {
-                     secondCardIndex = i
-                     
+                    secondCardIndex = i;
+
                     if (cards[secondCardIndex].cardNum === cards[firstCardIndex].cardNum) {
                         points++
                         document.getElementById("points").innerHTML = points;
-                        open=0
-                        firstCardIndex=null
-                        secondCardIndex=null
-                        if(points===6){
-                            winner.innerHTML="YOU'VE WON!"
-    
+                        open = 0
+                        firstCardIndex = null
+                        secondCardIndex = null
+                        if (points === 6) {
+                            winner.innerHTML = "YOU'VE WON!"
                         }
                     } else {
                         setTimeout(function () {
-                                cardElements[firstCardIndex].src = "../media/img/logo1.jpeg";
-                                cardElements[secondCardIndex].src = "../media/img/logo1.jpeg";
-                                open = 0;
-                                firstCardIndex=null
-                                secondCardIndex=null
-                            } , 1000);
+                            cardElements[firstCardIndex].src = "../media/img/logo1.jpeg";
+                            cardElements[secondCardIndex].src = "../media/img/logo1.jpeg";
+                            open = 0;
+                            firstCardIndex = null
+                            secondCardIndex = null
+                        }, 1000);
                     }
                 }
             }

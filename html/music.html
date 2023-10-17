@@ -17,14 +17,19 @@
 
 
 <body>
-    <h1>music</h1>
+    <h1>piano</h1>
     <div id="piano">
         <div id="keys">
         </div>
     </div>
     <input id="piano-notes" type="text" maxlength="1">
-    <img class=recIcon src="../media/img/record_icon.png" id="record-button">
-    <img class="recIcon pressed" src="../media/img/stop_rec.png" id="stop-record">
+    <img class=recIcon src="../media/img/record_icon.png" id="record-button" alt="record">
+    <img class="recIcon pressed" src="../media/img/stop_rec.png" id="stop-record" alt="stop recording">
+    <img class="green" id="on-btn" src="../media/img/onBtn.png" alt="on button">
+    <div class="slidecontainer">
+        volume
+        <input type="range" min="1" max="100" value="100" class="slider" id="volume">
+      </div>
     <div id="recording-list">
         <h4>list:</h4>
         <ul id="items-list"></ul>

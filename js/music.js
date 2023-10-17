@@ -2,8 +2,8 @@
 
 /* html collections that hold the keys and their audio files, 
 recording settings helpers - a recording holder and on and off button and recordings num */
-let audio = document.getElementsByTagName("audio");
-let keys = document.getElementById("keys").children;
+const audio = document.getElementsByTagName("audio");
+const keys = document.getElementById("keys").children;
 let recording = [];
 let isOn = false;
 if (!localStorage.getItem("recordingsNum")) {
@@ -15,7 +15,7 @@ let stopBtn = document.getElementById("stop-record")
 
 //
 const pianoNotes = document.getElementById("piano-notes");
-
+const volume = document.getElementById("volume");
 // }
 
 // -----------------------------------------
@@ -80,15 +80,16 @@ function playKey() {
 /* an event listener to the record btn that 
 changes the recording boolean, resets the recording, 
 makes the recording btn disappear and the recording in process btn appear */
-recordBtn.addEventListener("click", function () {
+recordBtn.addEventListener("click", record);
+function record() {
     isOn = true
     recording = []
     recordBtn.classList.add("pressed")
     stopBtn.classList.remove("pressed")
-})
+}
 
 // event listener for a keyboard press in the input
-pianoNotes.addEventListener("keypress", playKeyKeyboard)
+pianoNotes.addEventListener("keypress", playKeyKeyboard);
 
 //function that plays the key that corresponds to the key in the keyboard
 function playKeyKeyboard(event) {
@@ -119,7 +120,8 @@ function playKeyKeyboard(event) {
 /*  event listener and function that changes the recording button back to not in recording,
  resets the recording boolean, plays the recording that was just recorded 
  and saves it to local storage */
-stopBtn.addEventListener("click", function () {
+stopBtn.addEventListener("click", stopRecording);
+function stopRecording() {
     isOn = false
     stopBtn.classList.add("pressed")
     recordBtn.classList.remove("pressed")
@@ -127,7 +129,7 @@ stopBtn.addEventListener("click", function () {
     let num = Number.parseInt(localStorage.getItem("recordingsNum")) + 1;
     localStorage.setItem("recording" + num, JSON.stringify(recording));
     localStorage.setItem("recordingsNum", num);
-})
+}
 
 /* a play recording function that takes an array of numbers and plays the audio files that 
 correspond to each number a second after the other (or more if the key was played recently) */
@@ -135,7 +137,6 @@ function playAudioTags(thisRecording) {
     let i = 0;
     const playNextHelper = () => {
         audio[thisRecording[i]].play();
-        console.log("played:" + audio[thisRecording[i]].outerHTML)
         i++;
         setTimeout(playNext, 500);
     }
@@ -151,6 +152,47 @@ function playAudioTags(thisRecording) {
     playNext();
 }
 
+//volume control:
+volume.addEventListener("input", changeVolume);
+
+function changeVolume() {
+    for (let i = 0; i < audio.length; i++) {
+        audio[i].volume = volume.value / 100;
+        // console.log('audio[i]: ', audio[i]);
+        
+    }
+}
+
+//on and off btn:
+let powerBtn = document.getElementById("on-btn");
+powerBtn.addEventListener("click", onOffPiano);
+
+/* the function removes all the event listener if the button turns green (is turned on) 
+and does the opposite for the red */
+function onOffPiano() {
+    if (powerBtn.classList.contains("green")) {
+        powerBtn.classList.remove("green");
+        powerBtn.classList.add("red");
+        for (let i = 0; i < keys.length; i++) {
+            keys[i].removeEventListener("click", playKey);
+        }
+        recordBtn.removeEventListener("click", record);
+        pianoNotes.removeEventListener("keypress", playKeyKeyboard);
+        stopBtn.removeEventListener("click", stopRecording);
+        pianoNotes.disabled = "true";
+    }
+    else {
+        powerBtn.classList.remove("red");
+        powerBtn.classList.add("green");
+        for (let i = 0; i < keys.length; i++) {
+            keys[i].addEventListener("click", playKey);
+        }
+        recordBtn.addEventListener("click", record);
+        pianoNotes.addEventListener("keypress", playKeyKeyboard);
+        stopBtn.addEventListener("click", stopRecording);
+        pianoNotes.disabled = "";
+    }
+}
 
 
 // ------------ list maker:
