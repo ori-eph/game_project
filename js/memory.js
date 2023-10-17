@@ -48,44 +48,50 @@ function shuffleArray(array) {
     return copy;
 }
 
+let winner=document.getElementById("won")
 
 let open = 0
 let points =0
-let firstCard = 0
-let secondCard=0
+let firstCardIndex = null
+let secondCardIndex=null
 function playerTurn() {
     const cardElements = document.getElementsByTagName("img");
     for (let i = 0; i < cardElements.length; i++) {
         cardElements[i].addEventListener("click", function () {
-            if(open < 2) {
+            if(open < 2 ) {
                 cardElements[i].src = cards[i].cardImg;
                 open++;
+     
                 if (open === 1) {
-                    firstCard = cards[i]
-                    console.log('   firstCard = cards[i]: ',    firstCard = cards[i]);
+                    firstCardIndex =i
+   
                 } else if (open === 2) {
-                     secondCard = cards[i]
-                     console.log('  secondCard = cards[i]: ',   secondCard = cards[i]);
-                    if (secondCard.cardNum === firstCard.cardNum) {
+                     secondCardIndex = i
+                     
+                    if (cards[secondCardIndex].cardNum === cards[firstCardIndex].cardNum) {
                         points++
                         document.getElementById("points").innerHTML = points;
+                        open=0
+                        firstCardIndex=null
+                        secondCardIndex=null
+                        if(points===6){
+                            winner.innerHTML="YOU'VE WON!"
+    
+                        }
                     } else {
                         setTimeout(function () {
-                            
-                                firstCard.src = "../media/img/logo1.jpeg";
-                                secondCard.src = "../media/img/logo1.jpeg";
+                                cardElements[firstCardIndex].src = "../media/img/logo1.jpeg";
+                                cardElements[secondCardIndex].src = "../media/img/logo1.jpeg";
                                 open = 0;
+                                firstCardIndex=null
+                                secondCardIndex=null
                             } , 1000);
                     }
                 }
             }
         });
-    }}
+    }
+}
 
 playerTurn()
-
-
-
-
-
 
