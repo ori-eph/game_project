@@ -6,6 +6,11 @@ const audio = document.getElementsByTagName("audio");
 const keys = document.getElementById("keys").children;
 let recording = [];
 let isOn = false;
+
+const userRecKey = localStorage.getItem("username") + "Rec";
+if (!localStorage.getItem(userRecKey)) {
+    localStorage.setItem(userRecKey, JSON.stringify([])); //only resets if there are no recordings to this user
+}
 if (!localStorage.getItem("recordingsNum")) {
     localStorage.setItem("recordingsNum", 0); //only resets if there are no recordings, meaning it doesn't exist
 }
@@ -133,6 +138,9 @@ function stopRecording() {
     let num = Number.parseInt(localStorage.getItem("recordingsNum")) + 1;
     localStorage.setItem("recording" + num, JSON.stringify(recording));
     localStorage.setItem("recordingsNum", num);
+    const userRec = JSON.parse(localStorage.getItem(userRecKey));
+    userRec.push("recording" + num);
+    localStorage.setItem(userRecKey, JSON.stringify(userRec));
     refreshList();
 }
 
@@ -164,7 +172,7 @@ function changeVolume() {
     for (let i = 0; i < audio.length; i++) {
         audio[i].volume = volume.value / 100;
         // console.log('audio[i]: ', audio[i]);
-        
+
     }
 }
 
@@ -203,22 +211,24 @@ function onOffPiano() {
 // ------------ list maker:
 
 function refreshList() {
-    let list = document.getElementById("items-list");
-    let regItem = /recording[0-9]/;
+    const list = document.getElementById("items-list");
+    const userRecordings = JSON.parse(localStorage.getItem(userRecKey));
     list.innerHTML = "";
     for (let key in localStorage) {
-        if (regItem.test(key)) {
-            let li = document.createElement("li");
-            li.innerText = key + " ";
-            list.appendChild(li);
-            let trashButton = document.createElement("button");
-            trashButton.addEventListener("click", deleteItem);
-            trashButton.innerText = "delete";
-            li.appendChild(trashButton);
-            let playButton = document.createElement("button");
-            playButton.addEventListener("click", playFromList);
-            playButton.innerText = "play";
-            li.appendChild(playButton);
+        for (let i = 0; i < userRecordings.length; i++) {
+            if (key === userRecordings[i]) {
+                let li = document.createElement("li");
+                li.innerText = key + " ";
+                list.appendChild(li);
+                let trashButton = document.createElement("button");
+                trashButton.addEventListener("click", deleteItem);
+                trashButton.innerText = "delete";
+                li.appendChild(trashButton);
+                let playButton = document.createElement("button");
+                playButton.addEventListener("click", playFromList);
+                playButton.innerText = "play";
+                li.appendChild(playButton);
+            }
         }
     }
 }
