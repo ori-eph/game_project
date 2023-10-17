@@ -21,13 +21,15 @@ function createBoard(numCards) {
     grid.style.gridTemplateRows = "repeat(" + numCards / 4 + ", 1fr)";
 
     for (let i = 0; i < numCards; i++) {
-        // let card = document.createElement("div");
+
         let cardImg = document.createElement("img");
         cardImg.style.width = "100%";
         cardImg.style.objectFit = "cover";
-        // card.appendChild(cardImg);
+
         cardImg.src = "../media/img/logo1.jpeg";
-        cards.push({ num: (i + 1), cardImg: "../media/img/cards/" + cardsNumbers[i] + ".jpeg", cardNum: cardsNumbers[i] })
+        cards.push({ num: (i + 1), 
+            cardImg: "../media/img/cards/" + cardsNumbers[i] + ".jpeg",
+          cardNum: cardsNumbers[i] })
         grid.appendChild(cardImg);
     }
 }
@@ -48,30 +50,32 @@ function shuffleArray(array) {
 
 
 let open = 0
-let points = 0
+let points =0
 let firstCard = 0
+let secondCard=0
 function playerTurn() {
-    let cards = document.getElementsByTagName("img");
-    for (let i = 0; i < cards.length; i++) {
-        cards[i].addEventListener("click", function () {
-            if (open < 2) {
-                open++
-                cards[i].src = `../media/img/cards/${i}.jpeg`
+    const cardElements = document.getElementsByTagName("img");
+    for (let i = 0; i < cardElements.length; i++) {
+        cardElements[i].addEventListener("click", function () {
+            if(open < 2) {
+                cardElements[i].src = cards[i].cardImg;
+                open++;
                 if (open === 1) {
                     firstCard = cards[i]
+                    console.log('   firstCard = cards[i]: ',    firstCard = cards[i]);
                 } else if (open === 2) {
-                    let secondCard = cards[i]
-                    if (secondCard.src === firstCard.src) {
+                     secondCard = cards[i]
+                     console.log('  secondCard = cards[i]: ',   secondCard = cards[i]);
+                    if (secondCard.cardNum === firstCard.cardNum) {
                         points++
+                        document.getElementById("points").innerHTML = points;
                     } else {
-                        setTimeout(function (first,second) {
-                            return function() {
-                                first.src = "../media/img/logo1.jpeg";
-                                second.src = "../media/img/logo1.jpeg";
+                        setTimeout(function () {
+                            
+                                firstCard.src = "../media/img/logo1.jpeg";
+                                secondCard.src = "../media/img/logo1.jpeg";
                                 open = 0;
-                                firstCard = null;
-                            };
-                        }(firstCard, secondCard), 1000);
+                            } , 1000);
                     }
                 }
             }
@@ -79,6 +83,9 @@ function playerTurn() {
     }}
 
 playerTurn()
+
+
+
 
 
 
