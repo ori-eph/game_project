@@ -329,7 +329,7 @@ function playKeyKeyboard(event) {
             key.style.transition = "background-color 500ms ease-out";
             key.style.backgroundColor = "#E1AA74";
             setTimeout(() => {
-                key.style.backgroundColor = "white";
+                key.style.backgroundColor = "";
             }, 350);
             } 
             else if (/^[1-6]$/.test(event.key)) { //if drum
@@ -346,7 +346,7 @@ function playKeyKeyboard(event) {
                 drum.style.transition = "background-color 500ms ease-out";
                 drum.style.backgroundColor = "chocolate";
                 setTimeout(() => {
-                    drum.style.backgroundColor = "#dedcc7"
+                    drum.style.backgroundColor = ""
                     
                 }, 350);
             }

@@ -11,3 +11,14 @@
     width: 20vh;
     background-color: #192655;
 }
+
+#stars {
+    display: flex;
+    justify-content: center;
+    column-gap: 1%;
+    height: 5vh;
+}
+
+#stars > *{
+    height: 100%;
+}
