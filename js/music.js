@@ -138,7 +138,7 @@ function playAudioTags(thisRecording) {
     }
     const playNext = () => {
         if (i < thisRecording.length) {
-            if (i > 2 && (thisRecording[i] === thisRecording[i - 1] || thisRecording[i] === thisRecording[i - 2])) {
+            if (i > 2 && (thisRecording[i]["index"] === thisRecording[i - 1]["index"] || thisRecording[i]["index"] === thisRecording[i - 2]["index"])) {
                 setTimeout(playNextHelper, 300);
             } else {
                 playNextHelper();

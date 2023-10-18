@@ -9,9 +9,6 @@ let timesMemoryEntered=document.getElementById("timesMemoryEntered")
 timesMusicEntered.innerHTML="you've played Music Maker " +userData.timesMusicEntered +" times!"
 timesMemoryEntered.innerHTML="you've played Memory " +userData.timesMemoryEntered + " times!"
 
-
-
-
 usernameTitle.innerText = username;
 const recKey = username + "Rec";
 const levelKey = username + "Level";
