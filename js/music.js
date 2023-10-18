@@ -119,7 +119,7 @@ function stopRecording() {
     refreshList();
 }
 
-//some functions for piano and drums:
+//-------------------some functions for piano and drums:
 
 /* a play recording function that takes an array of a recording and plays the audio files that 
 correspond to each number and type a second after the other (or more if the sound was played recently) */
@@ -314,7 +314,7 @@ window.onload = function () {
 
 
 
-//play from input ------------------------------------
+//play from input ------------------------------------ piano and drums
 
 //function that plays the key that corresponds to the key in the keyboard
 function playKeyKeyboard(event) {
