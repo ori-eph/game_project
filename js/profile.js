@@ -11,7 +11,7 @@ const timesMemoryEntered = document.getElementById("timesMemoryEntered")
 timesMusicEntered.innerHTML = "you've played Music Maker " + userData.timesMusicEntered + " times!"
 timesMemoryEntered.innerHTML = "you've played Memory " + userData.timesMemoryEntered + " times!"
 
-usernameTitle.innerText = username; //the title text - the name of the user
+usernameTitle.innerText = "- " + username + " -"; //the title text - the name of the user
 
 /* local storage keys for the current user's recordings and memory game level 
 for easy access */

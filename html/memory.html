@@ -17,12 +17,14 @@
 
 
 <body>
-    
-  <h1>play!</h1>
-  <p id="explanation">Exercise your memory and have fun with our online Memory Game. Match pairs of cards and advance to the next level upon winning. Enjoy the challenge!</p>
-  <aside>
-    <p>points:</p>
-    <p id="points">0</p></aside>
+    <p id="back">⬅️</p>
+    <h1>Memory Game!</h1>
+    <p id="explanation">Exercise your memory and have fun with our online Memory Game. Match pairs of cards and advance
+        to the next level upon winning. Enjoy the challenge!</p>
+    <aside>
+        <p>points:</p>
+        <p id="points">0</p>
+    </aside>
     <div id="levels">
         <label>levels:</label>
         <button id="1">1</button>
@@ -32,14 +34,17 @@
         <button id="5" disabled>5</button>
     </div>
 
-    <p id="won"></p>
-    <button id="replay">replay</button>
-    <button id="next-level">next level</button>
+    <p class="won" id="won"></p>
+    <div class="won">
+        <button class="won" id="replay">replay</button>
+        <button class="won" id="next-level">next level</button>
+    </div>
     <p id="welcomeToLevel"></p>
     <div id="grid-container">
     </div>
     <br>
     <script src="../js/memory.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

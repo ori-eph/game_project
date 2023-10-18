@@ -5,6 +5,25 @@
 4) #192655
 */
 
+button {
+    margin-top: 30px;
+    padding: 2px;
+}
+
+p {
+    margin: 1%;
+    font-size: 1.1em;
+}
+
+h2 {
+    margin: 3%;
+    margin-bottom: 2%;
+}
+
+h3 {
+    margin-top: 3%;
+}
+
 #profile-pic {
     border-radius: 50%;
     padding: 2%;
@@ -19,10 +38,26 @@
     height: 5vh;
 }
 
-#stars > *{
+#stars>* {
     height: 100%;
 }
-button{margin-top:30px;
-padding: 2px;}
-p{padding: 5px;}
-h2{margin: 10px;}
+
+#delete-account,
+#log-out {
+    padding: 1%;
+    font-size: 1em;
+}
+
+#delete-account {
+    background-color: #f03f3faf;
+    margin-right: 2%;
+}
+
+#delete-account:hover,
+#delete-account:active {
+    background-color: #ca3535af;
+}
+
+#username {
+    margin-top: 1%;
+}

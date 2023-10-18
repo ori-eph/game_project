@@ -208,6 +208,7 @@ function removeBoard() {
 //a function that says the name of the level at the start of it and disappears
 
 const LevelMsg = document.getElementById("welcomeToLevel");
+LevelMsg.classList.add("welcome"); ///more css style
 LevelMsg.style.opacity = 0; // hidden by default
 LevelMsg.style.transition = "opacity 700ms ease"; // transition effect
 
