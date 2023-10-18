@@ -130,6 +130,7 @@ let demeCard = document.createElement("img");
 demeCard.src = "../media/img/logo1.jpeg";
 
 function playGame(numCards) {
+    startingLevelMsg();
     nextLevelBtn.style.display = "none";
     replay.style.display = "none";
     winner.innerHTML = "";
@@ -184,6 +185,19 @@ function removeBoard() {
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
+}
+
+//a function that says the name of the level at the start of it and disappears
+
+const LevelMsg = document.getElementById("welcomeToLevel");
+LevelMsg.style.opacity = 0; // hidden by default
+LevelMsg.style.transition = "opacity 700ms ease"; // transition effect
+function startingLevelMsg() {
+    LevelMsg.innerText = `level ${currentLevel}!`;
+    LevelMsg.style.opacity = 1; // show the message
+    setTimeout(() => {
+        LevelMsg.style.opacity = 0;
+    }, 1500) // hide the message after 1.5 seconds
 }
 
 window.onload = () => {

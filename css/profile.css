@@ -1,0 +1,13 @@
+/* colors: 
+1) #F3f0CA
+2) #E1AA74
+3) #3876BF
+4) #192655
+*/
+
+#profile-pic {
+    border-radius: 50%;
+    padding: 2%;
+    width: 20vh;
+    background-color: #192655;
+}
