@@ -17,29 +17,40 @@
 
 
 <body>
-    <h1>piano</h1>
-    <div id="piano">
-        <div id="keys">
+    <h1>Music Maker</h1>
+    <p id="explanation">“Welcome to Music Maker, an online music simulator that lets you create your own original music
+        recordings! In
+        Music Maker, you have access to two instruments: piano and drums. You can play them by either clicking on the
+        key/drum you want to play or by typing in the input box below. You can also record your piece by pressing the
+        record button. Your notes will be recorded and you will have a list of your recordings below the music maker.
+        Additionally, you can adjust the volume with the volume slider and turn off the simulator with the power button.
+        Have fun playing!”
+    </p>
+    <p id="instruction">to play the piano type any letter (exept of Q and P). to play the drums type a number between 1
+        and 6</p>
+    <div id="music-simulator">
+        <div id="music-maker-settings">
+            <div class="slidecontainer">
+                volume
+                <input type="range" min="1" max="100" value="100" class="slider" id="volume">
+            </div>
+            <input id="piano-notes" type="text" maxlength="1" placeholder="play instruments here">
+            <img class=recIcon src="../media/img/record_icon.png" id="record-button" alt="record">
+            <img class="recIcon pressed" src="../media/img/stop_rec.png" id="stop-record" alt="stop recording">
+            <img class="green" id="on-btn" src="../media/img/onBtn.png" alt="on button">
+        </div>
+        <div id="piano">
+            <div id="keys">
+            </div>
+        </div>
+        <div id="drums">
         </div>
     </div>
-    <input id="piano-notes" type="text" maxlength="1">
-    <img class=recIcon src="../media/img/record_icon.png" id="record-button" alt="record">
-    <img class="recIcon pressed" src="../media/img/stop_rec.png" id="stop-record" alt="stop recording">
-    <img class="green" id="on-btn" src="../media/img/onBtn.png" alt="on button">
-    <div class="slidecontainer">
-        volume
-        <input type="range" min="1" max="100" value="100" class="slider" id="volume">
-      </div>
     <div id="recording-list">
         <h4>your recordings:</h4>
         <ul id="items-list"></ul>
     </div>
-
-    <div id="drums">
-    </div>
-
     <script src="../js/music.js"></script>
-
 </body>
 
 </html>

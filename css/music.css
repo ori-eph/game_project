@@ -1,3 +1,10 @@
+/* colors: 
+1) #F3f0CA
+2) #E1AA74
+3) #3876BF
+4) #192655
+*/
+
 audio {
     display: none;
 }
@@ -6,7 +13,7 @@ body {
     width: 80%;
     height: 80vh;
     margin: auto;
-    background-color: lightblue;
+    background-color: #c7e7f4;
 }
 
 .recIcon {
@@ -25,7 +32,7 @@ body {
 }
 
 .green {
-    background-color: #37ff00;
+    background-color: #51f723;
 }
 
 #on-btn {
@@ -141,4 +148,130 @@ body {
 #drums>*:active {
     animation: drum-beat 0.5s alternate infinite;
     /* This makes the drum shrink and grow */
+}
+
+#drums div:hover {
+
+    /* turns the keys gray when mouse is on them, important since style gets overwritten by 
+    the style of the keys when they are called by the keyboard
+     (they turn orange in the "playkeykeyboard" function) */
+
+    background-color: #b9b7b7;
+}
+
+#music-maker-settings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #cfcfcf;
+    padding: 2%;
+}
+
+#piano-notes {
+    height: 5vh;
+    font-size: 2.5vh;
+    text-align: center;
+}
+
+.slidecontainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+}
+
+.slider {
+    width: 100%;
+}
+
+#volume {
+    margin-right: auto;
+}
+
+#record-button,
+#stop-record {
+    margin-left: auto;
+}
+
+#piano-notes,
+.recIcon,
+.on-btn,
+.slidecontainer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recIcon {
+    height: 8vh;
+    width: auto
+}
+
+#music-simulator {
+    background-color: #505050bf;
+    padding: 3% 5%;
+    border-radius: 5%;
+}
+
+#music-simulator>* {
+    margin: 0 auto;
+}
+
+#drums,
+#piano {
+    margin-top: 2.5vh;
+}
+
+#on-btn {
+    border: 0.1em solid #111;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #4d4d4d;
+    margin-top: 2.5vh;
+}
+
+#explanation {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 3.75vh;
+}
+
+#instruction {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 3% 0 2% 0;
+    font-weight: bold;
+}
+
+#recording-list {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+#recording-list > * {
+    text-align: center;
+    margin: 1%;
+}
+
+#recording-list > ul {
+    list-style-type: none;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+#items-list {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.button-list {
+    margin: 0.5%;
+    padding: 0.5%;
+    font-size: 1em;
 }

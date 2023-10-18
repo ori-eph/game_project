@@ -129,8 +129,17 @@ function playAudioTags(thisRecording) {
         const sound = thisRecording[i];
         if (sound.type === "piano") {
             audio[sound.index].play();
+            keys[sound.index].style.backgroundColor = "#E1AA74";
+            setTimeout(() => {
+                keys[sound.index].style.backgroundColor = ""
+            }, 350);
+
         } else if (sound.type === "drum") {
             drumAudio[sound.index].play();
+            drumElements[sound.index].style.backgroundColor = "chocolate";
+            setTimeout(() => {
+                drumElements[sound.index].style.backgroundColor = ""
+            }, 350);
         }
 
         i++;
@@ -268,16 +277,19 @@ function refreshList() {
             if (key === userRecordings[i]) {
                 let li = document.createElement("li");
                 li.innerText = key + " ";
+                li.style.marginBottom = "1%"
                 list.appendChild(li);
 
                 let trashButton = document.createElement("button");
                 trashButton.addEventListener("click", deleteItem);
                 trashButton.innerText = "delete";
+                trashButton.classList = "button-list";
                 li.appendChild(trashButton);
 
                 let playButton = document.createElement("button");
                 playButton.addEventListener("click", playFromList);
                 playButton.innerText = "play";
+                playButton.classList = "button-list";
                 li.appendChild(playButton);
             }
         }
