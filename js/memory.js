@@ -74,6 +74,7 @@ function createBoard(numCards) {
     //determine number of columns and rows based on current level
     let grid = document.getElementById("grid-container");
     const divider = [4, 4, 5, 6, 6];
+   
     grid.style.gridTemplateColumns = "repeat(" + numCards / (numCards / divider[currentLevel - 1]) + ", 1fr)";
     grid.style.gridTemplateRows = "repeat(" + numCards / divider[currentLevel - 1] + ", 1fr)";
 

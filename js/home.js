@@ -2,10 +2,7 @@
 document.getElementById("welcome-msg").innerText += " " + localStorage.getItem("username") + "!";
 //gets user data for username from local storage
  const username=localStorage.getItem("username")
-const userData = JSON.parse(localStorage.getItem(username)) || {
-    timesMusicEntered: 0,
-    timesMemoryEntered: 0
-};
+const userData = JSON.parse(localStorage.getItem(username))
 
 //when user clicks on piano game 1 is added to a counter and stored in the local storage
 document.getElementById("piano-game").addEventListener("click", () => {

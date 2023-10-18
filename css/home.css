@@ -38,6 +38,7 @@ nav {
     height: 5vh;
     background-color: #3876bf;
     display: flex;
+    justify-content: space-around;
 }
 
 #opening {
@@ -87,4 +88,5 @@ nav {
 #profile-page-img{
   width:100%
 }
-a{width:5%}
+a{width:5%;
+color: black;}
