@@ -32,7 +32,11 @@ header>img {
 header>img {
     width: 5%;
 }
-nav a {width:20%}
+
+nav a {
+    width: 20%
+}
+
 nav {
     position: fixed;
     top: 15vh;
@@ -42,8 +46,15 @@ nav {
     display: flex;
     justify-content: space-around;
 }
-#profile-page-img{
-    width:100%
-  }
-  a{width:5%;
-  color: black;}
+
+#profile-page-img {
+    width: 100%
+}
+
+nav > a {
+    width: 5%;
+}
+
+a {
+    color: black;
+}
