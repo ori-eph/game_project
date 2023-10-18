@@ -29,6 +29,10 @@ header>img {
     width: 5%;
 }
 
+header>img {
+    width: 5%;
+}
+nav a {width:20%}
 nav {
     position: fixed;
     top: 15vh;
