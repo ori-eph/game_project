@@ -26,7 +26,9 @@ button.addEventListener("click", function (event) {
         const newUser = {
             username: username,
             phoneNumber: phoneNumber,
-            password: password
+            password: password,
+            timesMusicEntered:0,
+            timesMemoryEntered:0
         }
         localStorage.setItem(username, JSON.stringify(newUser))
         localStorage.setItem("username", username);
