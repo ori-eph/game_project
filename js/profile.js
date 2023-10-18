@@ -1,15 +1,20 @@
-let usernameTitle = document.getElementById("username");
+const usernameTitle = document.getElementById("username"); //the title of the profile page
 
-let username = localStorage.getItem("username");
-let userData = JSON.parse(localStorage.getItem(username));
+const username = localStorage.getItem("username"); //the username of the current user
+const userData = JSON.parse(localStorage.getItem(username)); //all the data of this user
 
-let timesMusicEntered = document.getElementById("timesMusicEntered")
-let timesMemoryEntered = document.getElementById("timesMemoryEntered")
+//the p tags that show the user's statistics
+const timesMusicEntered = document.getElementById("timesMusicEntered") 
+const timesMemoryEntered = document.getElementById("timesMemoryEntered") 
 
+//the user statistics text (the numbers according to local storage user data)
 timesMusicEntered.innerHTML = "you've played Music Maker " + userData.timesMusicEntered + " times!"
 timesMemoryEntered.innerHTML = "you've played Memory " + userData.timesMemoryEntered + " times!"
 
-usernameTitle.innerText = username;
+usernameTitle.innerText = username; //the title text - the name of the user
+
+/* local storage keys for the current user's recordings and memory game level 
+for easy access */
 const recKey = username + "Rec";
 const levelKey = username + "Level";
 
@@ -17,27 +22,31 @@ const levelKey = username + "Level";
 const usernameInfo = document.getElementById("info-name");
 const userPhoneInfo = document.getElementById("info-phone");
 usernameInfo.innerText += " " + username;
-userPhoneInfo.innerText += " " + JSON.parse(localStorage.getItem(username))["phoneNumber"];
+userPhoneInfo.innerText += " " + userData["phoneNumber"];
 
 //setting up user levels:
-const stars = document.getElementById("stars");
-const memoryLevel = document.getElementById("memory-level");
-const numRecordings = 0;
+const stars = document.getElementById("stars"); //memory game star container
+const memoryLevel = document.getElementById("memory-level"); //memory level p tag
+let numRecordings = 0; //0 in case user never played, otherwise:
 if (localStorage.getItem(recKey)) {
-    const numRecordings = JSON.parse(localStorage.getItem(recKey)).length;
+    //user recording list length is the number of this user's recordings
+    numRecordings = JSON.parse(localStorage.getItem(recKey)).length; 
 }
 memoryLevel.innerText += " you have " + numRecordings + " recording(s).";
-let numStars = 1;
+
+let numStars = 1; //1 in case user never played (1 is the first level not 0)
 if (localStorage.getItem(levelKey)) {
-    numStars = localStorage.getItem(levelKey);
+    numStars = localStorage.getItem(levelKey); //the level is the amount of stars
 }
+//adding as stars according to the level number
 for (let i = 0; i < numStars; i++) {
-    let star = document.createElement("img");
+    const star = document.createElement("img");
     star.src = "../media/img/star.png";
     stars.appendChild(star);
 }
 
-let deleteAccountBtn = document.getElementById("delete-account");
+//the delete account button:
+const deleteAccountBtn = document.getElementById("delete-account");
 deleteAccountBtn.addEventListener("click", deleteAccount);
 
 function deleteAccount() {
@@ -50,9 +59,7 @@ function deleteAccount() {
         }
 
         // make an array of that users local storage keys:
-        let keysArr = ["Level", "Rec",];
-        keysArr = keysArr.map((value) => { return username + value });
-        keysArr.push(username);
+        const keysArr = [levelKey, recKey];
 
         //delete all the recordings and keys that belong to the user
         for (key in localStorage) {
@@ -60,12 +67,13 @@ function deleteAccount() {
                 localStorage.removeItem(key);
             }
         }
-        // alert("account deleted.")
-        //log out the user
+
+        //delete the user itself (user data) and log out
+        localStorage.removeItem(username);
         logOut();
 
     } else {
         // User clicked Cancel
-        alert("canceling delete.")
+        alert("canceled delete.")
     }
 }

@@ -18,8 +18,8 @@ if (!localStorage.getItem("recordingsNum")) {
 let recordBtn = document.getElementById("record-button")
 let stopBtn = document.getElementById("stop-record")
 
-//
-const pianoNotes = document.getElementById("piano-notes");
+//the inputBox and volume
+const MusicNotes = document.getElementById("piano-notes"); //input
 const volume = document.getElementById("volume");
 
 //on and off btn:
@@ -27,7 +27,7 @@ let powerBtn = document.getElementById("on-btn");
 
 // }
 
-// -----------------------------------------
+// ----------------------------------------- piano
 
 /* a function that loops 24 times, one for each key and creates it - 
 / makes a div with id "key<number of this key>", puts in it an audio tag 
@@ -49,7 +49,7 @@ function createPiano() {
         const source = document.createElement("source");
         let sourceFile = "../media/sound/key";
         if (i < 10) {
-            sourceFile += "0" + i + ".mp3"
+            sourceFile += "0" + i + ".mp3" //the files 1-9 have 0 before the num
         }
         else {
             sourceFile += i + ".mp3";
@@ -76,7 +76,7 @@ for (let i = 0; i < keys.length; i++) {
 function playKey() {
     let KeyAudio = this.children[0]; //this = key
     KeyAudio.play();
-    // if record was pressed then isOn is true and the index of the audio  will be saved to the temp recording
+    // if record was pressed then isOn is true and the index and type of the audio  will be saved to the temp recording
     if (isOn) {
         for (let i = 0; i < audio.length; i++) {
             if (audio[i] === KeyAudio) {
@@ -98,31 +98,31 @@ function record() {
 }
 
 // event listener for a keyboard press in the input
-pianoNotes.addEventListener("keypress", playKeyKeyboard);
-
-
-
+MusicNotes.addEventListener("keypress", playKeyKeyboard);
 
 /*  event listener and function that changes the recording button back to not in recording,
  resets the recording boolean, plays the recording that was just recorded 
- and saves it to local storage */
+ adds 1 to the number of recordings in the site
+ and saves the new recording to local storage  and refreshes the list for the user*/
 stopBtn.addEventListener("click", stopRecording);
 function stopRecording() {
-    isOn = false
-    stopBtn.classList.add("pressed")
-    recordBtn.classList.remove("pressed")
+    isOn = false;
+    stopBtn.classList.add("pressed");
+    recordBtn.classList.remove("pressed");
     playAudioTags(recording);
-    let num = Number.parseInt(localStorage.getItem("recordingsNum")) + 1;
-    localStorage.setItem("recording" + num, JSON.stringify(recording));
-    localStorage.setItem("recordingsNum", num);
-    const userRec = JSON.parse(localStorage.getItem(userRecKey));
-    userRec.push("recording" + num);
-    localStorage.setItem(userRecKey, JSON.stringify(userRec));
+    const num = Number.parseInt(localStorage.getItem("recordingsNum")) + 1; //num of recordings
+    localStorage.setItem("recording" + num, JSON.stringify(recording)); //save recording
+    localStorage.setItem("recordingsNum", num); //update recordingsNum
+    const userRec = JSON.parse(localStorage.getItem(userRecKey)); //find the recordings of the user
+    userRec.push("recording" + num); //add the new rec to it
+    localStorage.setItem(userRecKey, JSON.stringify(userRec)); //update the user recordings to it
     refreshList();
 }
 
-/* a play recording function that takes an array of numbers and plays the audio files that 
-correspond to each number a second after the other (or more if the key was played recently) */
+//some functions for piano and drums:
+
+/* a play recording function that takes an array of a recording and plays the audio files that 
+correspond to each number and type a second after the other (or more if the sound was played recently) */
 function playAudioTags(thisRecording) {
     let i = 0;
     const playNextHelper = () => {
@@ -153,13 +153,14 @@ volume.addEventListener("input", changeVolume);
 
 function changeVolume() {
     for (let i = 0; i < audio.length; i++) {
-        audio[i].volume = volume.value / 100;
-        // console.log('audio[i]: ', audio[i]);
-
+        audio[i].volume = volume.value / 100; //update the vol of each audio file
     }
 }
 
+// on and off button:
+
 powerBtn.addEventListener("click", onOff);
+
 /* the function removes all the event listener if the button turns green (is turned on) 
 and does the opposite for the red */
 function onOff() {
@@ -169,17 +170,17 @@ function onOff() {
         for (let i = 0; i < keys.length; i++) {
             keys[i].removeEventListener("click", playKey);
         }
-        for(let i=0;i <drumElements.length; i++){
+        for (let i = 0; i < drumElements.length; i++) {
             drumElements[i].removeEventListener("click", playDrum)
         }
         recordBtn.removeEventListener("click", record);
-        pianoNotes.removeEventListener("keypress", playKeyKeyboard);
-       
+        MusicNotes.removeEventListener("keypress", playKeyKeyboard);
+
         stopBtn.removeEventListener("click", stopRecording);
-        pianoNotes.disabled = "true";
-        drumElements.disabled="true"
+        MusicNotes.disabled = "true";
+        drumElements.disabled = "true"
         if (isOn) {
-            stopRecording();
+            stopRecording(); //if the off is pressed mid recording, the recording is stopped
         }
     }
     else {
@@ -188,73 +189,17 @@ function onOff() {
         for (let i = 0; i < keys.length; i++) {
             keys[i].addEventListener("click", playKey);
         }
-        for(let i=0;i<drumElements.length; i++){
-            drumElements[i].addEventListener("click",playDrum)
+        for (let i = 0; i < drumElements.length; i++) {
+            drumElements[i].addEventListener("click", playDrum)
         }
         recordBtn.addEventListener("click", record);
-        pianoNotes.addEventListener("keypress", playKeyKeyboard);
+        MusicNotes.addEventListener("keypress", playKeyKeyboard);
         stopBtn.addEventListener("click", stopRecording);
-        pianoNotes.disabled = "";
+        MusicNotes.disabled = "";
     }
 }
 
-
-// ------------ list maker:
-
-function refreshList() {
-    const list = document.getElementById("items-list");
-    const userRecordings = JSON.parse(localStorage.getItem(userRecKey));
-    let count
-    list.innerHTML = "";
-    for (let key in localStorage) {
-        for (let i = 0; i < userRecordings.length; i++) {
-            if (key === userRecordings[i]) {
-                let li = document.createElement("li");
-                li.innerText = key + " ";
-                list.appendChild(li);
-                let trashButton = document.createElement("button");
-                trashButton.addEventListener("click", deleteItem);
-                trashButton.innerText = "delete";
-                li.appendChild(trashButton);
-                let playButton = document.createElement("button");
-                playButton.addEventListener("click", playFromList);
-                playButton.innerText = "play";
-                li.appendChild(playButton);
-            }
-        }
-    }
-}
-
-function playFromList() {
-    let li = this.parentNode;
-    let recording = li.innerText.slice(0, -11).trim();
-    playAudioTags(JSON.parse(localStorage.getItem(recording)));
-}
-
-function deleteItem() {
-    let li = this.parentNode;
-    let list = li.parentNode;
-    let recordingKey = li.innerText.slice(0, -11);
-    list.removeChild(li);
-    for (let key in localStorage) {
-        if (key === recordingKey) {
-            localStorage.removeItem(key);
-
-        }
-    }
-    const userRec = JSON.parse(localStorage.getItem(userRecKey));
-    userRec.splice(userRec.indexOf(recordingKey), 1);
-    localStorage.setItem(userRecKey, JSON.stringify(userRec));
-}
-
-window.onload = function () {
-    refreshList("");
-};
-
-
-
-
-//drums
+//------------------------------------------drums
 
 const drumsContainer = document.getElementById("drums");
 
@@ -308,13 +253,76 @@ function playDrum() {
     }
 }
 
+
+// ------------ list maker:
+
+
+/*refresh list finds the recordings that are in the user's recording list, 
+puts them in a li tag and adds to them a trash and play button */
+function refreshList() {
+    const list = document.getElementById("items-list");
+    const userRecordings = JSON.parse(localStorage.getItem(userRecKey));
+    list.innerHTML = "";
+    for (let key in localStorage) {
+        for (let i = 0; i < userRecordings.length; i++) {
+            if (key === userRecordings[i]) {
+                let li = document.createElement("li");
+                li.innerText = key + " ";
+                list.appendChild(li);
+
+                let trashButton = document.createElement("button");
+                trashButton.addEventListener("click", deleteItem);
+                trashButton.innerText = "delete";
+                li.appendChild(trashButton);
+
+                let playButton = document.createElement("button");
+                playButton.addEventListener("click", playFromList);
+                playButton.innerText = "play";
+                li.appendChild(playButton);
+            }
+        }
+    }
+}
+
+//if play is pressed in the list:
+function playFromList() {
+    const li = this.parentNode; //the li of the play button that was pressed
+    const recordingKey = li.innerText.slice(0, -11).trim(); //the recording name, like- "recording1"
+    playAudioTags(JSON.parse(localStorage.getItem(recordingKey))); //plays the recording from the local storage that has that name
+}
+
+//removes a user's recording when the trash is pressed
+function deleteItem() {
+    const li = this.parentNode;
+    const list = li.parentNode;
+    const recordingKey = li.innerText.slice(0, -11);
+    list.removeChild(li);
+    for (let key in localStorage) {
+        if (key === recordingKey) {
+            localStorage.removeItem(key); //removes the rec from local storage
+        }
+    }
+    //removes the rec from the user's recording list
+    let userRec = JSON.parse(localStorage.getItem(userRecKey));
+    userRec.splice(userRec.indexOf(recordingKey), 1);
+    localStorage.setItem(userRecKey, JSON.stringify(userRec));
+}
+
+window.onload = function () {
+    refreshList("");
+};
+
+
+
+//play from input ------------------------------------
+
 //function that plays the key that corresponds to the key in the keyboard
 function playKeyKeyboard(event) {
-    let keysString = "wertyuioasdfghjklzxcvbnm123456";  //keyboard keys in order
-    let keys = keysString.split("");
-    let capsKeys = keys.map(key => key.toUpperCase());
+    const keysString = "wertyuioasdfghjklzxcvbnm123456";  //keyboard keys in order
+    const keys = keysString.split("");
+    const capsKeys = keys.map(key => key.toUpperCase());
     for (let i = 0; i < keys.length; i++) {
-        if (event.key === keys[i] || event.key === capsKeys[i]) {
+        if (event.key === keys[i] || event.key === capsKeys[i]) { //if input is one of the keys
             if (i < 24) {  //if piano
 
                 audio[i].play();
@@ -323,36 +331,32 @@ function playKeyKeyboard(event) {
                 if (isOn) {
                     recording.push({ type: "piano", index: i });
                 }
-                pianoNotes.value = ""; //resets value to allow a new input
-                  //key style to show it is played:
-            const key = document.getElementById("key" + (i + 1));
-            key.style.transition = "background-color 500ms ease-out";
-            key.style.backgroundColor = "#E1AA74";
-            setTimeout(() => {
-                key.style.backgroundColor = "";
-            }, 350);
-            } 
+                MusicNotes.value = ""; //resets value to allow a new input
+
+                //key style to show it is played:
+                const key = document.getElementById("key" + (i + 1));
+                key.style.transition = "background-color 500ms ease-out";
+                key.style.backgroundColor = "#E1AA74";
+                setTimeout(() => {
+                    key.style.backgroundColor = "";
+                }, 350);
+            }
+
             else if (/^[1-6]$/.test(event.key)) { //if drum
                 let drumIndex = parseInt(event.key) - 1;
                 drumAudio[drumIndex].play();
                 if (isOn) {
                     recording.push({ type: "drum", index: drumIndex });
                 }
-                // drum style to dhow it is played
-                const drum = document.getElementById("drum" + (drumIndex+1))
-                console.log('drum: ', drum);
-                console.log('"drum" + (drumIndex+i): ', "drum" + (drumIndex+1));
-;
+                // drum style to show it is played
+                const drum = document.getElementById("drum" + (drumIndex + 1));
                 drum.style.transition = "background-color 500ms ease-out";
                 drum.style.backgroundColor = "chocolate";
                 setTimeout(() => {
                     drum.style.backgroundColor = ""
-                    
+
                 }, 350);
             }
-
-
-          
         }
     }
 }
