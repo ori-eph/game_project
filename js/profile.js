@@ -1,5 +1,17 @@
 let usernameTitle = document.getElementById("username");
+
 let username = localStorage.getItem("username");
+let userData = JSON.parse(localStorage.getItem(username));
+
+let timesMusicEntered=document.getElementById("timesMusicEntered")
+let timesMemoryEntered=document.getElementById("timesMemoryEntered")
+
+timesMusicEntered.innerHTML="you've played Music Maker " +userData.timesMusicEntered +" times!"
+timesMemoryEntered.innerHTML="you've played Memory " +userData.timesMemoryEntered + " times!"
+
+
+
+
 usernameTitle.innerText = username;
 const recKey = username + "Rec";
 const levelKey = username + "Level";
