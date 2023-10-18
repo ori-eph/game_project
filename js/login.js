@@ -24,11 +24,4 @@ function checkUser() {
     else {
         loginMsg.innerText = "u must fill both username and password."
     }
-}document.getElementById("login-btn").addEventListener("click", function (event) {
-    event.preventDefault();
-let username = document.getElementById("username").value
-let password = document.getElementById("password").value
-
-if(username===""||password==="")
-{document.getElementById("invalid").innerHTML = "please fill out required fields"}
-else{document.getElementById("invalid").innerHTML = ""}})
+}

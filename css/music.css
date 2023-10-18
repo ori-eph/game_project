@@ -21,7 +21,7 @@ body {
 
 .red {
     background-color: #ff4949;
-    
+
 }
 
 .green {
@@ -66,7 +66,7 @@ body {
 }
 
 #keys div:hover {
-    
+
     /* turns the keys gray when mouse is on them, important since style gets overwritten by 
     the style of the keys when they are called by the keyboard
      (they turn orange in the "playkeykeyboard" function) */
@@ -78,32 +78,72 @@ body {
     background-color: lightgray;
 }
 
-.drum{padding:5px;
-    width:100px;
-    height:100px;
-border-radius: 40%;
-background-color: brown;
-display: flex;
-flex-wrap: wrap;
-margin: 5px;}
 
- #drums>*{
-  background-color: brown;
-  width: 60px;
-  height: 60px;
-  margin: 5px;
-  border-radius: 40%;
-  display: flex;
- }
- #drums>*:hover{
-background-color: chocolate;
- }
- #drums{
-    float: right;
+#drums>*:hover {
+    background-color: chocolate;
+}
+
+#drums {
     display: flex;
-    flex-wrap: wrap;
-    width:200px;
-    position:absolute;
-    right:20vw;
-    top:50vh;
- }
+    justify-content: center;
+    align-items: center;
+    column-gap: 1%;
+}
+
+.drum {
+    position: relative;
+    border-radius: 50%;
+    box-shadow: inset -1em -1em 1.5em rgba(0, 0, 0, 0.2);
+    border: 0.2em solid black;
+    cursor: pointer;
+    background: #dedcc7;
+}
+
+#drum1 {
+    width: 20vh;
+    height: 20vh;
+}
+
+#drum2 {
+    width: 15vh;
+    height: 15vh;
+    align-self: center;
+}
+
+#drum3 {
+    width: 10vh;
+    height: 10vh;
+    align-self: flex-end;
+}
+
+#drum4 {
+    width: 8vh;
+    height: 8vh;
+    align-self: flex-end;
+}
+
+#drum5 {
+    width: 12vh;
+    height: 12vh;
+}
+
+#drum6 {
+    width: 16vh;
+    height: 16vh;
+    background-color: rgb(184, 171, 138)
+}
+
+@keyframes drum-beat {
+    0% {
+        transform: translateZ(-40px) scale(1);
+    }
+
+    100% {
+        transform: translateZ(-40px) scale(0.9);
+    }
+}
+
+#drums>*:active {
+    animation: drum-beat 0.5s alternate infinite;
+    /* This makes the drum shrink and grow alternately */
+}

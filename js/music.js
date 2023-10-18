@@ -110,7 +110,7 @@ function playKeyKeyboard(event) {
             audio[i].play();
             //saving the key index to the recording
             if (isOn) {
-                recording.push(i);
+                recording.push({ type: "piano", index: i });
             }
             pianoNotes.value = ""; //resets value to allow a new input
 
@@ -149,13 +149,13 @@ correspond to each number a second after the other (or more if the key was playe
 function playAudioTags(thisRecording) {
     let i = 0;
     const playNextHelper = () => {
-        const sound=thisRecording[i];
-        if(sound.type==="piano"){
-          audio[sound.index].play();  
-        }else if(sound.type==="drum"){
+        const sound = thisRecording[i];
+        if (sound.type === "piano") {
+            audio[sound.index].play();
+        } else if (sound.type === "drum") {
             drumAudio[sound.index].play();
         }
-        
+
         i++;
         setTimeout(playNext, 500);
     }
@@ -254,9 +254,12 @@ function deleteItem() {
     for (let key in localStorage) {
         if (key === recordingKey) {
             localStorage.removeItem(key);
-            localStorage.setItem("recordingsNum", Number.parseInt(localStorage.getItem("recordingsNum")) - 1)
+            // localStorage.setItem("recordingsNum", Number.parseInt(localStorage.getItem("recordingsNum")) - 1)
         }
     }
+    const userRec = JSON.parse(localStorage.getItem(userRecKey));
+    userRec.splice(userRec.indexOf(recordingKey), 1);
+    localStorage.setItem(userRecKey, JSON.stringify(userRec));
 }
 
 window.onload = function () {
@@ -299,23 +302,24 @@ createDrums(); // Call the function to create drums on load
 // Add event listeners for drum clicks
 const drumElements = document.getElementsByClassName("drum");
 for (let i = 0; i < drumElements.length; i++) {
-    drumElements[i].addEventListener("click",playDrum);
+    drumElements[i].addEventListener("click", playDrum);
 }
 
 
 const drumAudio = document.querySelectorAll(".drum audio");
 
 
-function playDrum(){
-    const audio = this.getElementsByTagName("audio")[0]; 
+function playDrum() {
+    const audio = this.getElementsByTagName("audio")[0];
     audio.play();
     if (isOn) {
-            for (let i = 0; i < drumAudio.length; i++) {
-                if (drumAudio[i] === audio) {
-                    recording.push({ type: "drum", index: Array.from(drumAudio).indexOf(audio) }); {
-              
+        for (let i = 0; i < drumAudio.length; i++) {
+            if (drumAudio[i] === audio) {
+                recording.push({ type: "drum", index: Array.from(drumAudio).indexOf(audio) }); {
+
+                }
             }
         }
     }
-}}
+}
 
