@@ -100,30 +100,7 @@ function record() {
 // event listener for a keyboard press in the input
 pianoNotes.addEventListener("keypress", playKeyKeyboard);
 
-//function that plays the key that corresponds to the key in the keyboard
-function playKeyKeyboard(event) {
-    let keysString = "wertyuioasdfghjklzxcvbnm";  //keyboard keys in order
-    let keys = keysString.split("");
-    let capsKeys = keys.map(key => key.toUpperCase());
-    for (let i = 0; i < keys.length; i++) {
-        if (event.key === keys[i] || event.key === capsKeys[i]) {
-            audio[i].play();
-            //saving the key index to the recording
-            if (isOn) {
-                recording.push({ type: "piano", index: i });
-            }
-            pianoNotes.value = ""; //resets value to allow a new input
 
-            //key style to show it is played:
-            const key = document.getElementById("key" + (i + 1));
-            key.style.transition = "background-color 500ms ease-out";
-            key.style.backgroundColor = "#E1AA74";
-            setTimeout(() => {
-                key.style.backgroundColor = "white";
-            }, 350);
-        }
-    }
-}
 
 
 /*  event listener and function that changes the recording button back to not in recording,
@@ -182,20 +159,25 @@ function changeVolume() {
     }
 }
 
-powerBtn.addEventListener("click", onOffPiano);
+powerBtn.addEventListener("click", onOff);
 /* the function removes all the event listener if the button turns green (is turned on) 
 and does the opposite for the red */
-function onOffPiano() {
+function onOff() {
     if (powerBtn.classList.contains("green")) {
         powerBtn.classList.remove("green");
         powerBtn.classList.add("red");
         for (let i = 0; i < keys.length; i++) {
             keys[i].removeEventListener("click", playKey);
         }
+        for(let i=0;i <drumElements.length; i++){
+            drumElements[i].removeEventListener("click", playDrum)
+        }
         recordBtn.removeEventListener("click", record);
         pianoNotes.removeEventListener("keypress", playKeyKeyboard);
+       
         stopBtn.removeEventListener("click", stopRecording);
         pianoNotes.disabled = "true";
+        drumElements.disabled="true"
         if (isOn) {
             stopRecording();
         }
@@ -205,6 +187,9 @@ function onOffPiano() {
         powerBtn.classList.add("green");
         for (let i = 0; i < keys.length; i++) {
             keys[i].addEventListener("click", playKey);
+        }
+        for(let i=0;i<drumElements.length; i++){
+            drumElements[i].addEventListener("click",playDrum)
         }
         recordBtn.addEventListener("click", record);
         pianoNotes.addEventListener("keypress", playKeyKeyboard);
@@ -254,7 +239,7 @@ function deleteItem() {
     for (let key in localStorage) {
         if (key === recordingKey) {
             localStorage.removeItem(key);
-            // localStorage.setItem("recordingsNum", Number.parseInt(localStorage.getItem("recordingsNum")) - 1)
+
         }
     }
     const userRec = JSON.parse(localStorage.getItem(userRecKey));
@@ -275,18 +260,18 @@ const drumsContainer = document.getElementById("drums");
 
 // Function to create drum elements and their audio tags
 function createDrums() {
-    const numDrums = 6; // Number of drums
+    const numDrums = 6;
     for (let i = 1; i <= numDrums; i++) {
-        // Create drum div
+
         const drum = document.createElement("div");
-        drum.className = "drum"; // Add CSS class "drum"
-        drum.id = "drum" + i; // Assign unique id to each drum
+        drum.className = "drum";
+        drum.id = "drum" + i;
         drumsContainer.appendChild(drum); // Append drum to drums container
 
         // Create drum audio
         const audio = document.createElement("audio");
         const source = document.createElement("source");
-        let sourceFile = `../media/sound/drums/drum${i}.mp3`; // Drum sound file path
+        let sourceFile = `../media/sound/drums/drum${i}.mp3`;
         source.src = sourceFile;
         audio.appendChild(source);
         drum.appendChild(audio); // Append audio to drum div
@@ -323,3 +308,51 @@ function playDrum() {
     }
 }
 
+//function that plays the key that corresponds to the key in the keyboard
+function playKeyKeyboard(event) {
+    let keysString = "wertyuioasdfghjklzxcvbnm123456";  //keyboard keys in order
+    let keys = keysString.split("");
+    let capsKeys = keys.map(key => key.toUpperCase());
+    for (let i = 0; i < keys.length; i++) {
+        if (event.key === keys[i] || event.key === capsKeys[i]) {
+            if (i < 24) {  //if piano
+
+                audio[i].play();
+
+                //saving the key index to the recording
+                if (isOn) {
+                    recording.push({ type: "piano", index: i });
+                }
+                pianoNotes.value = ""; //resets value to allow a new input
+                  //key style to show it is played:
+            const key = document.getElementById("key" + (i + 1));
+            key.style.transition = "background-color 500ms ease-out";
+            key.style.backgroundColor = "#E1AA74";
+            setTimeout(() => {
+                key.style.backgroundColor = "white";
+            }, 350);
+            } 
+            else if (/^[1-6]$/.test(event.key)) { //if drum
+                let drumIndex = parseInt(event.key) - 1;
+                drumAudio[drumIndex].play();
+                if (isOn) {
+                    recording.push({ type: "drum", index: drumIndex });
+                }
+                // drum style to dhow it is played
+                const drum = document.getElementById("drum" + (drumIndex+1))
+                console.log('drum: ', drum);
+                console.log('"drum" + (drumIndex+i): ', "drum" + (drumIndex+1));
+;
+                drum.style.transition = "background-color 500ms ease-out";
+                drum.style.backgroundColor = "chocolate";
+                setTimeout(() => {
+                    drum.style.backgroundColor = "#dedcc7"
+                    
+                }, 350);
+            }
+
+
+          
+        }
+    }
+}
