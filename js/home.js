@@ -1,25 +1,25 @@
-// document.getElementById("welcome-msg").innerText += " " + localStorage.getItem("username") + "!";
-// let timesMusicEntered=0
-// let timesMemoryEntered=0
-// let musicMessage=document.getElementById("timesMusicEntered")
-// let memoryMessage= document.getElementById("timesMemoryEntered")
+document.getElementById("welcome-msg").innerText += " " + localStorage.getItem("username") + "!";
+let timesMusicEntered=0
+let timesMemoryEntered=0
+let musicMessage=document.getElementById("timesMusicEntered")
+let memoryMessage= document.getElementById("timesMemoryEntered")
 
-// document.getElementById("piano-game").addEventListener("click", () => {
-//     window.location.href = "../html/music.html";
-//     timesMusicEntered = parseInt(localStorage.getItem("timesMusicEntered")) 
-//     timesMusicEntered++
-//     localStorage.setItem("timesMusicEntered",timesMusicEntered)
-//     musicMessage.innerHTML=`you've played MUSIC MAKER ${timesMusicEntered} times!`
+document.getElementById("piano-game").addEventListener("click", () => {
+    window.location.href = "../html/music.html";
+    timesMusicEntered = parseInt(localStorage.getItem("timesMusicEntered")) 
+    timesMusicEntered++
+    localStorage.setItem("timesMusicEntered",timesMusicEntered)
+    musicMessage.innerHTML=`you've played MUSIC MAKER ${timesMusicEntered} times!`
 
    
-// });
-// document.getElementById("memory-game").addEventListener("click", () => {
-//     window.location.href = "../html/memory.html";
-//     timesMemoryEntered = parseInt(localStorage.getItem("timesMemoryEntered")) 
-//     timesMemoryEntered++
-//     localStorage.setItem("timesMemoryEntered",timesMemoryEntered)
-//     memoryMessage.innerHTML=`you've played Memory${timesMemoryEntered} times!`
-// });
+});
+document.getElementById("memory-game").addEventListener("click", () => {
+    window.location.href = "../html/memory.html";
+    timesMemoryEntered = parseInt(localStorage.getItem("timesMemoryEntered")) 
+    timesMemoryEntered++
+    localStorage.setItem("timesMemoryEntered",timesMemoryEntered)
+    memoryMessage.innerHTML=`you've played Memory${timesMemoryEntered} times!`
+});
 
 // Get the username from local storage
 let username = localStorage.getItem("username") || "defaultUser";
