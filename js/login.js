@@ -1,8 +1,3 @@
-window.history.pushState(null, null, window.location.href);
-window.onpopstate = function () {
-    window.history.go(1);
-};
-
 let loginBtn = document.getElementsByTagName("button")[0];
 loginBtn.addEventListener("click", checkUser)
 
@@ -30,4 +25,3 @@ function checkUser() {
         loginMsg.innerText = "u must fill both username and password."
     }
 }
-
