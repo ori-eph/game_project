@@ -3,11 +3,11 @@ let usernameTitle = document.getElementById("username");
 let username = localStorage.getItem("username");
 let userData = JSON.parse(localStorage.getItem(username));
 
-let timesMusicEntered=document.getElementById("timesMusicEntered")
-let timesMemoryEntered=document.getElementById("timesMemoryEntered")
+let timesMusicEntered = document.getElementById("timesMusicEntered")
+let timesMemoryEntered = document.getElementById("timesMemoryEntered")
 
-timesMusicEntered.innerHTML="you've played Music Maker " +userData.timesMusicEntered +" times!"
-timesMemoryEntered.innerHTML="you've played Memory " +userData.timesMemoryEntered + " times!"
+timesMusicEntered.innerHTML = "you've played Music Maker " + userData.timesMusicEntered + " times!"
+timesMemoryEntered.innerHTML = "you've played Memory " + userData.timesMemoryEntered + " times!"
 
 usernameTitle.innerText = username;
 const recKey = username + "Rec";
@@ -22,8 +22,16 @@ userPhoneInfo.innerText += " " + JSON.parse(localStorage.getItem(username))["pho
 //setting up user levels:
 const stars = document.getElementById("stars");
 const memoryLevel = document.getElementById("memory-level");
-memoryLevel.innerText += " you have " + JSON.parse(localStorage.getItem(recKey)).length + " recording(s).";
-for (let i = 0; i < localStorage.getItem(levelKey); i++) {
+const numRecordings = 0;
+if (localStorage.getItem(recKey)) {
+    const numRecordings = JSON.parse(localStorage.getItem(recKey)).length;
+}
+memoryLevel.innerText += " you have " + numRecordings + " recording(s).";
+let numStars = 1;
+if (localStorage.getItem(levelKey)) {
+    numStars = localStorage.getItem(levelKey);
+}
+for (let i = 0; i < numStars; i++) {
     let star = document.createElement("img");
     star.src = "../media/img/star.png";
     stars.appendChild(star);
@@ -42,7 +50,7 @@ function deleteAccount() {
         }
 
         // make an array of that users local storage keys:
-        let keysArr = ["Level", "Rec"];
+        let keysArr = ["Level", "Rec",];
         keysArr = keysArr.map((value) => { return username + value });
         keysArr.push(username);
 
