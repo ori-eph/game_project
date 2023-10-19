@@ -113,13 +113,18 @@ function stopRecording() {
     stopBtn.classList.add("pressed");
     recordBtn.classList.remove("pressed");
     playAudioTags(recording);
+    let recName = document.getElementById("name-rec").value;
     const num = Number.parseInt(localStorage.getItem("recordingsNum")) + 1; //num of recordings
-    localStorage.setItem("recording" + num, JSON.stringify(recording)); //save recording
+    if (!recName || localStorage.getItem(recName)) {
+        recName = "recording" + num; //save recording with num if user put no name 
+    }
+    localStorage.setItem(recName, JSON.stringify(recording)); //save recording
     localStorage.setItem("recordingsNum", num); //update recordingsNum
     const userRec = JSON.parse(localStorage.getItem(userRecKey)); //find the recordings of the user
-    userRec.push("recording" + num); //add the new rec to it
+    userRec.push(recName); //add the new rec to it
     localStorage.setItem(userRecKey, JSON.stringify(userRec)); //update the user recordings to it
     refreshList();
+    document.getElementById("name-rec").value = ""; //resets name for user.
 }
 
 //-------------------some functions for piano and drums:

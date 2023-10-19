@@ -190,6 +190,7 @@ body {
 #record-button,
 #stop-record {
     margin-left: auto;
+    margin-bottom: 3%;
 }
 
 #piano-notes,
@@ -274,4 +275,26 @@ h4 {
     margin: 0.5%;
     padding: 0.5%;
     font-size: 1em;
+}
+
+#name-rec {
+    text-align: center;
+    padding: 1%;
+}
+
+#record {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 2%;
+    row-gap: 3%;
+    background-color: #b2b2b2;
+    padding: 1%;
+    border-radius: 5%;
+    justify-items:center;
+    justify-content: center;
+}
+
+#stop-record {
+    margin-right: 1%;
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/music.css" rel="stylesheet">
-  
+
     <link href="../media/img/circle_logo.png" rel="icon" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,8 +38,11 @@
                 <input type="range" min="1" max="100" value="100" class="slider" id="volume">
             </div>
             <input id="piano-notes" type="text" maxlength="1" placeholder="play instruments here">
-            <img class=recIcon src="../media/img/record_icon.png" id="record-button" alt="record">
-            <img class="recIcon pressed" src="../media/img/stop_rec.png" id="stop-record" alt="stop recording">
+            <div id="record">
+                <img class=recIcon src="../media/img/record_icon.png" id="record-button" alt="record">
+                <img class="recIcon pressed" src="../media/img/stop_rec.png" id="stop-record" alt="stop recording">
+                <input id="name-rec" type="text" maxlength="20" placeholder="recording name" name="recording name">
+            </div>
             <img class="green" id="on-btn" src="../media/img/onBtn.png" alt="on button">
         </div>
         <div id="piano">
