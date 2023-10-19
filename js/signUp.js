@@ -14,8 +14,8 @@ button.addEventListener("click", function (event) {
     const regex = /^\d{10}$|^\d{3}-\d{3}-\d{4}$|^\(\d{3}\)\d{3}-\d{4}$/
     let test = regex.test(phoneNumber)
     //if username or password not filled out
-    if(username===""||password===""){document.getElementById("invalid").innerText = "please fill out required fields"}else
-    if (test === false) {
+    if(username===""||password===""){document.getElementById("invalid").innerText = "please fill out required fields"}
+    else if (test === false) {
         document.getElementById("invalid").innerText = "invalid number"
 
     }
