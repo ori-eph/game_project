@@ -26,13 +26,13 @@ userPhoneInfo.innerText += " " + userData["phoneNumber"];
 
 //setting up user levels:
 const stars = document.getElementById("stars"); //memory game star container
-const memoryLevel = document.getElementById("memory-level"); //memory level p tag
+const musicLevel = document.getElementById("music-level"); //music level p tag
 let numRecordings = 0; //0 in case user never played, otherwise:
 if (localStorage.getItem(recKey)) {
     //user recording list length is the number of this user's recordings
     numRecordings = JSON.parse(localStorage.getItem(recKey)).length; 
 }
-memoryLevel.innerText += " you have " + numRecordings + " recording(s).";
+musicLevel.innerText += " you have " + numRecordings + " recording(s).";
 
 let numStars = 1; //1 in case user never played (1 is the first level not 0)
 if (localStorage.getItem(levelKey)) {
