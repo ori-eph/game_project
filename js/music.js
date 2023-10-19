@@ -7,7 +7,10 @@ const keys = document.getElementById("keys").children;
 let recording = [];
 let isOn = false;
 
-const userRecKey = localStorage.getItem("username") + "Rec";
+let userRecKey = "";
+if (localStorage.getItem("username")) {
+    userRecKey = localStorage.getItem("username") + "Rec";
+}
 if (!localStorage.getItem(userRecKey)) {
     localStorage.setItem(userRecKey, JSON.stringify([])); //only resets if there are no recordings to this user
 }
@@ -74,7 +77,7 @@ for (let i = 0; i < keys.length; i++) {
 /* function that plays the key audio of the key that was pressed
  - (passed to it from the click event) */
 function playKey() {
-    let KeyAudio = this.children[0]; //this = key
+    const KeyAudio = this.children[0]; //this = key
     KeyAudio.play();
     // if record was pressed then isOn is true and the index and type of the audio  will be saved to the temp recording
     if (isOn) {
@@ -321,7 +324,7 @@ function deleteItem() {
 }
 
 window.onload = function () {
-    refreshList("");
+    refreshList();
 };
 
 
